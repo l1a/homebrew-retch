@@ -3,17 +3,20 @@
 #
 # Homebrew formula for retch.
 #
-# THIS FILE IS THE SOURCE, NOT A REFERENCE COPY.
+# THIS IS A TEMPLATE, NOT A PUBLISHABLE FORMULA.
 # ----------------------------------------------
-# `just brew-bump <version>` renders it and `just brew-publish` pushes *exactly this file*
-# to the tap at github.com/l1a/homebrew-retch. Nothing is hand-edited in the tap, and
-# `just check` fails while this file disagrees with the rest of the repo.
+# `0.17.5` and `4a5acaf983bb680a59a42c002dbe2a2c420c7e8be71287e0b0d6a33177abc2f7` are filled in by `scripts/render_packaging.py` at publish
+# time, from the tag being released and the sha256 of the tarball that was actually
+# downloaded. `just brew-publish <version>` renders it and pushes the *rendered* file to
+# the tap at github.com/l1a/homebrew-retch. Nothing is hand-edited in the tap.
 #
-# That arrangement exists because the alternative already failed once: `packaging/aur/
-# PKGBUILD` was an inert "reference copy" that nothing rendered, published or checked, and
-# it reached **eleven releases** of drift (0.6.12 in-repo while the AUR served 0.6.23)
-# while every CI run stayed green. v0.7.1 made the AUR pair a real source with a guard;
-# this starts there rather than repeating the lesson.
+# It records no version, because recording one is what went wrong elsewhere: `packaging/
+# aur/PKGBUILD` was an inert "reference copy" that nothing rendered, published or checked,
+# and it reached **eleven releases** of drift (0.6.12 in-repo while the AUR served 0.6.23)
+# while every CI run stayed green. v0.7.1 answered that with a guard and v0.17.2 gave this
+# formula one on day one -- but a guard only ever detects a disagreement between two
+# recordings of the same fact. Writing the fact down once, at publish time, removes the
+# disagreement instead. See scripts/render_packaging.py.
 #
 # WHY A TAP RATHER THAN homebrew-core
 # ------------------------------------
@@ -28,15 +31,15 @@
 # supply as a build-time dependency. The trade is a slower first install against no new CI
 # secrets and no release-asset plumbing. Revisit when install time is an actual complaint.
 #
-# `version`, `url` and `sha256` track the last RELEASED tag, exactly like the PKGBUILD's
-# `pkgver` and the COPR spec's `Version:` — the tarball has to exist before it can be
-# checksummed, so all three legitimately trail `Cargo.toml` for a release cycle. That is
-# what `scripts/brew_check.py` understands, and why its version check is one-sided.
+# `url` and `sha256` carry sentinels rather than a release, so there is no "trailing
+# Cargo.toml" state to reason about and no bump to forget. `scripts/brew_check.py` asserts
+# the sentinels are still there; `scripts/render_packaging.py` refuses to write a file that
+# still contains one.
 class Retch < Formula
   desc "Fast, feature-rich system information fetcher"
   homepage "https://github.com/l1a/retch"
-  url "https://github.com/l1a/retch/archive/refs/tags/v0.17.3.tar.gz"
-  sha256 "77ccf85843d24ac3216ab31d2584ff4a95869266c59ddb8bc83819425cfc2033"
+  url "https://github.com/l1a/retch/archive/refs/tags/v0.17.5.tar.gz"
+  sha256 "4a5acaf983bb680a59a42c002dbe2a2c420c7e8be71287e0b0d6a33177abc2f7"
   license "GPL-3.0-or-later"
   head "https://github.com/l1a/retch.git", branch: "main"
 
