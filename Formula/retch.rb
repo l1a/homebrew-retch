@@ -5,7 +5,7 @@
 #
 # THIS IS A TEMPLATE, NOT A PUBLISHABLE FORMULA.
 # ----------------------------------------------
-# `0.17.9` and `7274fc6a369e48eee47f6ab1d774cd4b02f2a8fd3ecb8f233f197113bb97aba2` are filled in by `scripts/render_packaging.py` at publish
+# `0.18.0` and `6f955a6307de3c182f7724781b5cadeb8650c4104d6588b112723c6867ea2895` are filled in by `scripts/render_packaging.py` at publish
 # time, from the tag being released and the sha256 of the tarball that was actually
 # downloaded. `just brew-publish <version>` renders it and pushes the *rendered* file to
 # the tap at github.com/l1a/homebrew-retch. Nothing is hand-edited in the tap.
@@ -38,8 +38,8 @@
 class Retch < Formula
   desc "Fast, feature-rich system information fetcher"
   homepage "https://github.com/l1a/retch"
-  url "https://github.com/l1a/retch/archive/refs/tags/v0.17.9.tar.gz"
-  sha256 "7274fc6a369e48eee47f6ab1d774cd4b02f2a8fd3ecb8f233f197113bb97aba2"
+  url "https://github.com/l1a/retch/archive/refs/tags/v0.18.0.tar.gz"
+  sha256 "6f955a6307de3c182f7724781b5cadeb8650c4104d6588b112723c6867ea2895"
   license "GPL-3.0-or-later"
   head "https://github.com/l1a/retch.git", branch: "main"
 
@@ -83,11 +83,13 @@ class Retch < Formula
     # under a missing framework link — while touching nothing but local system calls.
     # (It is also 3.4 ms against `--short`'s 31 ms, and reaches no network at all.)
     #
-    # **THE OUTPUT MUST BE ANSI-STRIPPED BEFORE MATCHING.** retch colourises even when
-    # piped, so the label and its colon are separated by escapes and a literal `/OS:/`
-    # never matches:
+    # **THE OUTPUT IS ANSI-STRIPPED BEFORE MATCHING.** Up to 0.17.x retch colourised even
+    # when piped, so the label and its colon were separated by escapes and a literal
+    # `/OS:/` never matched:
     #   "\e[38;2;0;255;255mOS\e[39m\e[38;2;128;128;128m:\e[39m \e[...mmacOS 26.6.2"
-    # Two earlier versions of this test failed on exactly that.
+    # Two earlier versions of this test failed on exactly that. Since 0.18.0 piped output
+    # is plain by default (`--color auto`), but the strip stays: it costs nothing, and it
+    # keeps this assertion independent of how retch decides whether to colour.
     #
     # The pattern matches the whole `ESC [ ... <final byte>` form rather than SGR (`m`)
     # only: chafa opens a run with `\e[?25l`, and an SGR-only strip leaves six characters
