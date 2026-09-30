@@ -5,7 +5,7 @@
 #
 # THIS IS A TEMPLATE, NOT A PUBLISHABLE FORMULA.
 # ----------------------------------------------
-# `0.20.10` and `483c72e9562e887555a829efb62eb61da62f874212eaaade1502cf6db565dc51` are filled in by `scripts/render_packaging.py` at publish
+# `0.20.13` and `5ddfc7bd6a9b470bfea83655b3efe497c0ca4e4d1002d0d3d6ef22ccaca5bcbc` are filled in by `scripts/render_packaging.py` at publish
 # time, from the tag being released and the sha256 of the tarball that was actually
 # downloaded. `just brew-publish <version>` renders it and pushes the *rendered* file to
 # the tap at github.com/l1a/homebrew-retch. Nothing is hand-edited in the tap.
@@ -38,8 +38,8 @@
 class Retch < Formula
   desc "Fast, feature-rich system information fetcher"
   homepage "https://github.com/l1a/retch"
-  url "https://github.com/l1a/retch/archive/refs/tags/v0.20.10.tar.gz"
-  sha256 "483c72e9562e887555a829efb62eb61da62f874212eaaade1502cf6db565dc51"
+  url "https://github.com/l1a/retch/archive/refs/tags/v0.20.13.tar.gz"
+  sha256 "5ddfc7bd6a9b470bfea83655b3efe497c0ca4e4d1002d0d3d6ef22ccaca5bcbc"
   license "GPL-3.0-or-later"
   head "https://github.com/l1a/retch.git", branch: "main"
 
