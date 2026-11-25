@@ -38,8 +38,8 @@
 class Retch < Formula
   desc "Fast, feature-rich system information fetcher"
   homepage "https://github.com/l1a/retch"
-  url "https://github.com/l1a/retch/archive/refs/tags/v0.23.1.tar.gz"
-  sha256 "c57d24d2ad8b640691ad8052c449c70835d1e35ed3f337ad34bbd95831e66b39"
+  url "https://github.com/l1a/retch/archive/refs/tags/v0.23.8.tar.gz"
+  sha256 "71efd3ac1fd6480ff5d51f88ae27d86e55063e6428c18701117e39295bc4ca07"
   license "GPL-3.0-or-later"
   head "https://github.com/l1a/retch.git", branch: "main"
 
